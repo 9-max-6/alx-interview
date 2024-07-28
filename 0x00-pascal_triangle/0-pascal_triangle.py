@@ -4,6 +4,7 @@
  Pascal's triangle of n
 """
 
+
 def pascal_triangle(n):
     """algorithm"""
 
@@ -12,7 +13,7 @@ def pascal_triangle(n):
 
     blaise = []
     for i in range(n):
-        
+
         if (i == 0):
             blaise.append([1])
         elif (i == 1):
@@ -20,7 +21,7 @@ def pascal_triangle(n):
         else:
             new_row = []
             prev_row = blaise[i - 1]
-            for j in range(i  + 1):
+            for j in range(i + 1):
                 if j == 0:
                     new_row.append(1)
                 elif j == i:
