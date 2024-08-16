@@ -9,7 +9,6 @@ import os
 from typing import Any
 
 
-
 sig_num = signal.Signals.SIGINT
 file_size = []
 status_codes = []
@@ -33,6 +32,7 @@ def control_loop() -> Any:
         file_size.append(int(last_file_size))
         status_codes.append(last_status_code)
 
+
 def signal_handler(pid, signal) -> Any:
     """a function to handle the sigint signal from the user
     """
@@ -40,14 +40,16 @@ def signal_handler(pid, signal) -> Any:
     file_size.clear()
     status_codes.clear()
 
+
 def int_values(list_strings):
     """a function to make a list of integers
     """
     list_ints = []
     for string in list_strings:
         list_ints.append(int(string))
-    
+
     return list_ints
+
 
 def printer():
     """A function that computes metrics
@@ -64,8 +66,6 @@ def printer():
             count = status_codes.count(code)
             loop_template = f'{code}: {count}'
             print(loop_template)
-        
-
 
 
 signal.signal(sig_num, signal_handler)
