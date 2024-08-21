@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-module: script thst rads stdin line by line and computes metrics
+module: script that reads stdin line by line and computes metrics
 """
 import sys
 import re
@@ -69,5 +69,7 @@ def printer():
 
 
 signal.signal(sig_num, signal_handler)
-while True:
-    control_loop()
+
+if __name__ == '__main__':
+    while True:
+        control_loop()
