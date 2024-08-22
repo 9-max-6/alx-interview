@@ -41,19 +41,19 @@ def validUTF8(data):
 
     for byte in data:
         binary_rep = bin(byte)[2:].zfill(8)
-        
+
         if count == 0:
             count = get_prefix(binary_rep)
-            
+
             if count == 0:
                 continue
-            
+
             if count == 1 or count > 4:
                 return False
         else:
             if not binary_rep.startswith('10'):
                 return False
-            
+
         count -= 1
-    
+
     return count == 0
