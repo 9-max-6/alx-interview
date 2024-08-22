@@ -8,8 +8,10 @@ def get_prefix(binary_string):
     """
     count = 0
     for char in binary_string:
-        if char == '1':
-            count += 1
+        if char == '0':
+            break
+        count += 1
+
     return count
 
 
@@ -35,25 +37,23 @@ def validUTF8(data):
       - capture count
       - loop over the next items in the list and skip items equal to count.
     """
-    valid = True
     count = 0
 
-    for index, byte in enumerate(data):
-        if count > 0:
-            count -= 1
-            continue
-
-        if byte <= 127:
-            continue
-
-        binary_rep = bin(byte)[2:]
-
-        count = get_prefix(binary_rep)
-        next_bytes = data[index: index + count]
-        for iter_byte in next_bytes:
-            binary_rep_nested = bin(iter_byte)[2:]
-            binary_check = binary_rep_nested[0:2] == '10'
-            if not binary_check:
-                valid = False
-                return valid
-    return valid
+    for byte in data:
+        binary_rep = bin(byte)[2:].zfill(8)
+        
+        if count == 0:
+            count = get_prefix(binary_rep)
+            
+            if count == 0:
+                continue
+            
+            if count == 1 or count > 4:
+                return False
+        else:
+            if not binary_rep.startswith('10'):
+                return False
+            
+        count -= 1
+    
+    return count == 0
