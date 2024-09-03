@@ -5,14 +5,14 @@
 // response = ["url1", "url2", ...]
 // url1 = https://swapi-api.alx-tools.com/api/people/1/
 // response =  {"name": "<name>"}
-const request = require("/usr/local/lib/node_modules/request");
-const process = require("process");
+const request = require('../../../../../../usr/local/lib/node_modules/request');
+const process = require('process');
 
 if (process.argv.length !== 3) {
-  console.error("Usage 0-starwars_characters <id>");
+  console.error('Usage 0-starwars_characters <id>');
 } else {
-  id = process.argv[2];
-  url = `https://swapi-api.alx-tools.com/api/films/${id}/`;
+  const id = process.argv[2];
+  const url = `https://swapi-api.alx-tools.com/api/films/${id}/`;
 
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
@@ -22,15 +22,15 @@ if (process.argv.length !== 3) {
           getCharacterName(url);
         });
       } catch (e) {
-        console.error("Error parsing JSON:", e);
+        console.error('Error parsing JSON:', e);
       }
     } else {
-      console.error("Request failed:", error);
+      console.error('Request failed:', error);
     }
   });
 }
 
-function getCharacterName(url) {
+function getCharacterName (url) {
   request(url, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       try {
