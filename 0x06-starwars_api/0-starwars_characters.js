@@ -6,17 +6,17 @@
 // url1 = https://swapi-api.alx-tools.com/api/people/1/
 // response =  {"name": "<name>"}
 
-const request = require("/usr/local/lib/node_modules/request");
+const request = require("request");
 const process = require("process");
 
 async function getCharacterUrls(url) {
-  promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     request(url, (error, response, body) => {
       if (error) {
         reject(error);
       } else if (response.statusCode === 200 && !error) {
         try {
-          data = JSON.parse(body);
+          const data = JSON.parse(body);
           resolve(data.characters);
         } catch (e) {
           reject(e);
@@ -31,7 +31,7 @@ async function getCharacterUrls(url) {
     const characters = await promise;
     return characters;
   } catch (e) {
-    new Error("Error fetching URLS");
+    console.error(new Error("Error fetching URLS"));
   }
 }
 
@@ -46,14 +46,14 @@ async function getCharacters() {
 
   const filmId = process.argv[2];
   const url = `https://swapi-api.alx-tools.com/api/films/${filmId}/`;
-  let urls = await getCharacterUrls(url);
-  let promises = urls.map((url) => {
+  const urls = await getCharacterUrls(url);
+  const promises = urls.map((url) => {
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
           try {
-            let character_data = JSON.parse(body);
-            resolve(character_data.name);
+            const characterData = JSON.parse(body);
+            resolve(characterData.name);
           } catch (e) {
             reject(e);
           }
@@ -64,8 +64,8 @@ async function getCharacters() {
     });
   });
 
-  const character_names = await Promise.all(promises);
-  character_names.forEach((element) => {
+  const charNames = await Promise.all(promises);
+  charNames.forEach((element) => {
     console.log(element);
   });
 }
