@@ -6,10 +6,10 @@
 // url1 = https://swapi-api.alx-tools.com/api/people/1/
 // response =  {"name": "<name>"}
 
-const request = require("request");
-const process = require("process");
+const request = require('request');
+const process = require('process');
 
-async function getCharacterUrls(url) {
+async function getCharacterUrls (url) {
   const promise = new Promise((resolve, reject) => {
     request(url, (error, response, body) => {
       if (error) {
@@ -31,16 +31,16 @@ async function getCharacterUrls(url) {
     const characters = await promise;
     return characters;
   } catch (e) {
-    console.error(new Error("Error fetching URLS"));
+    console.error(new Error('Error fetching URLS'));
   }
 }
 
-async function getCharacters() {
+async function getCharacters () {
   // call a function to get the character urls
   // create promises for each member of the list
   // after all promises resolve, print the return value.
   if (process.argv.length !== 3) {
-    console.error("Usage: 0-starwars_characters <filmid>");
+    console.error('Usage: 0-starwars_characters <filmid>');
     return;
   }
 
