@@ -2,6 +2,8 @@
 """
 A function to determine the island perimeter
 """
+
+
 def island_perimeter(grid):
     """
     Calculates the perimeter of a single island in a grid,
