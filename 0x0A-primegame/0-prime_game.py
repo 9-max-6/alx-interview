@@ -11,7 +11,6 @@ def isWinner(x, nums):
     marias_wins, bens_wins = 0, 0
     max_num = max(nums)
 
-    # Generate primes up to the maximum number in nums using the Sieve of Eratosthenes
     primes = [True] * (max_num + 1)
     primes[0] = primes[1] = False  # 0 and 1 are not prime numbers
 
@@ -22,7 +21,7 @@ def isWinner(x, nums):
 
     # Play x rounds of the game
     for n in nums[:x]:
-        prime_count = sum(primes[1:n + 1])  # Count primes less than or equal to n
+        prime_count = sum(primes[1:n + 1])
         if prime_count % 2 == 0:
             bens_wins += 1
         else:
